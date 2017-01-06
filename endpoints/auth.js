@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var User = require('../schemas/userSchema');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 var randToken = require('rand-token');
 
 router.post('/login', login);
