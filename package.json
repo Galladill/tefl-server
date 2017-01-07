@@ -1,11 +1,11 @@
 {
   "name": "jordan_seed",
   "version": "1.0.0",
-  "description": "A fullstack seed for Jordan's projects",
+  "description": "The back-end rest api for the tefl project",
   "main": "server.js",
   "dependencies": {
     "async": "^2.1.4",
-    "bcrypt": "^1.0.1",
+    "bcryptjs": "^2.4.0",
     "body-parser": "^1.15.2",
     "cors": "^2.8.1",
     "express": "^4.14.0",
@@ -24,12 +24,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jordancaudill/JordanSeed.git"
+    "url": "https://github.com/Galladill/tefl-server.git"
   },
-  "author": "Jordan Caudill",
+  "author": "Jordan Caudill, Duncan Gallagher",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/jordancaudill/JordanSeed/issues"
+    "url": "https://github.com/Galladill/tefl-server/issues"
   },
-  "homepage": "https://github.com/jordancaudill/JordanSeed"
+  "homepage": "https://github.com/Galladill/tefl-server"
 }
