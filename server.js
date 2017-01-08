@@ -7,6 +7,7 @@ var async = require('async');
 var cors = require ('cors');
 var bodyParser = require('body-parser');
 var app = express();
+var Log = require('./schemas/logSchema');
 
 var port = 9001;
 
@@ -19,6 +20,20 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));               
 app.use(bodyParser.text());                                    
 app.use(bodyParser.json({ type: 'application/json'}));  
+
+// Log info from every request
+app.use(function(req, res, next) {
+    res.on('finish', function() {
+        var logEntry = {
+            'url': req.url,
+            'date': new Date().getTime(),
+            'path': req.route.path,
+            'method': req.method
+        };
+        Log.create(logEntry);
+    });
+        next();
+});
 
 // require endpoints
 app.use('/', require('./endpoints/auth.js'));
