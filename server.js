@@ -3,8 +3,7 @@
 var express = require('express');
 var mongoose = require('mongoose');
 var mongodb = require('mongodb');
-var async = require('async');
-var cors = require ('cors');
+var cors = require('cors');
 var bodyParser = require('body-parser');
 var app = express();
 var Log = require('./schemas/logSchema');
@@ -16,14 +15,14 @@ app.options('*', cors());
 app.use(cors());
 
 // parse application/json and look for raw text                                        
-app.use(bodyParser.json());                                     
-app.use(bodyParser.urlencoded({extended: true}));               
-app.use(bodyParser.text());                                    
-app.use(bodyParser.json({ type: 'application/json'}));  
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.text());
+app.use(bodyParser.json({ type: 'application/json' }));
 
 // Log info from every request
-app.use(function(req, res, next) {
-    res.on('finish', function() {
+app.use(function (req, res, next) {
+    res.on('finish', function () {
         var logEntry = {
             'url': req.url,
             'date': new Date().getTime(),
@@ -32,40 +31,29 @@ app.use(function(req, res, next) {
         };
         Log.create(logEntry);
     });
-        next();
+    next();
 });
 
 // require endpoints
 app.use('/', require('./endpoints/auth.js'));
 app.use('/', require('./endpoints/users.js'));
 
-var DBSTRING = 'mongodb://localhost/testDB';
+var DBSTRING;
+// Check environment, and use the appropriate database
+if (process.env.NODE_ENV === 'test') {
+    console.log('Going to use the test database...');
+    DBSTRING = 'mongodb://localhost/testDB';
+} else {
+    DBSTRING = 'mongodb://localhost/tefl';
+}
 
-async.series([
-        function(callback) {
-            mongodb.connect(DBSTRING, function (err, res) {
-                callback(err, res);
-            });
-        },
-        function(callback) {
-            mongoose.connect(DBSTRING, function(err, res) {
-                callback(err, res);
-            });
-        }
-    ],
-    // This is the callback
-    function(err, results) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log('Successfully connected to MongoDB and Mongoose.');
-            // Start the express server on the given port
-            app.listen(port, function () {
-                console.log('Server is running on localhost:' + port);
-            });
+mongoose.connect(DBSTRING, function (err, res) {
+    console.log('Successfully connected to the database at ' + DBSTRING);
+    // Start the express server on the given port
+    app.listen(port, function () {
+        console.log('Server is running on localhost:' + port);
+    });
 
-        }
-    }
-);
+});
 
 module.exports = app;
