@@ -10,8 +10,7 @@
         },
         '_activity': [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: 'activity',
-            required: [true, 'Required']
+            ref: 'activity'
         }],
         'duration': {
             type: Number,

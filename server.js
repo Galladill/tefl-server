@@ -37,6 +37,7 @@ app.use(function (req, res, next) {
 app.use('/', require('./endpoints/auth.js'));
 app.use('/', require('./endpoints/users.js'));
 app.use('/', require('./endpoints/activity.js'));
+app.use('/', require('./endpoints/lesson.js'));
 
 var DBSTRING;
 // Check environment, and use the appropriate database
