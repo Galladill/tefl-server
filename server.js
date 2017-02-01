@@ -2,7 +2,6 @@
 'use strict';
 var express = require('express');
 var mongoose = require('mongoose');
-var mongodb = require('mongodb');
 var cors = require('cors');
 var bodyParser = require('body-parser');
 var app = express();
@@ -37,6 +36,8 @@ app.use(function (req, res, next) {
 // require endpoints
 app.use('/', require('./endpoints/auth.js'));
 app.use('/', require('./endpoints/users.js'));
+app.use('/', require('./endpoints/activity.js'));
+app.use('/', require('./endpoints/lesson.js'));
 
 var DBSTRING;
 // Check environment, and use the appropriate database

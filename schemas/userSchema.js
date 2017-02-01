@@ -1,5 +1,5 @@
 (function() {
-    var mongoose = typeof require !== 'undefined' ? require('mongoose') : window.mongoose;
+    var mongoose = require('mongoose');
     var Schema = mongoose.Schema;
 
     var userSchema = new Schema({
