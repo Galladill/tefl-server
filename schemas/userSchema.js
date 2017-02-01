@@ -25,11 +25,5 @@
         'refreshTokenExpires': Number,
     });
 
-    if (typeof module !== 'undefined' && module.exports) {
-        // If this is being run on backend, export the module
-        module.exports = mongoose.model('user', userSchema);
-    } else {
-        // If this is being run on frontend, attach to window
-        window.myApp.userSchema = userSchema;
-    }
+    module.exports = mongoose.model('user', userSchema);
 })();

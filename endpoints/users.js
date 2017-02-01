@@ -1,6 +1,6 @@
 var router = require('express').Router();
 var User = require('../schemas/userSchema');
-var bcrypt = require('bcrypt');
+var bcrypt = require('bcryptjs');
 
 // these are the endpoints and their related functions
 router.post('/users', createUser);
