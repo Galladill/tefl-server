@@ -18,8 +18,14 @@
         },
         'description': {
             type: String,
-            required: [true, 'Required']
-        }
+        },
+        'level': {
+            type: String,
+            required: true
+        },
+        'tags': [{
+            type: String
+        }]
     });
 
     module.exports = mongoose.model('activity', activitySchema);
