@@ -6,15 +6,15 @@
         '_user': {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
-            required: [true, 'Required']
+            required: true
         },
         'duration': {
             type: Number,
-            required: [true, 'Required']
+            required: true
         },
         'title': {
             type: String,
-            required: [true, 'Required']
+            required: true
         },
         'description': {
             type: String,
