@@ -20,18 +20,18 @@ app.use(bodyParser.text());
 app.use(bodyParser.json({ type: 'application/json' }));
 
 // Log info from every request
-app.use(function (req, res, next) {
-    res.on('finish', function () {
-        var logEntry = {
-            'url': req.url,
-            'date': new Date().getTime(),
-            'path': req.route.path,
-            'method': req.method
-        };
-        Log.create(logEntry);
-    });
-    next();
-});
+// app.use(function (req, res, next) {
+//     res.on('finish', function () {
+//         var logEntry = {
+//             'url': req.url,
+//             'date': new Date().getTime(),
+//             'path': req.route.path,
+//             'method': req.method
+//         };
+//         Log.create(logEntry);
+//     });
+//     next();
+// });
 
 // require endpoints
 app.use('/', require('./endpoints/auth.js'));
