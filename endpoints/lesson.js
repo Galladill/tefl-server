@@ -22,7 +22,7 @@ function createLesson(req, res, next) {
 
 // get all lessons
 function getLessons(req, res, next) {
-    Lesson.find({}, function (err, activities) {
+    Lesson.find({_user: req.headers.user_id}, function (err, activities) {
          if (err) {
              return res.status(500).send(err);
          } else {
