@@ -12,10 +12,6 @@
             type: mongoose.Schema.Types.ObjectId,
             ref: 'activity'
         }],
-        'duration': {
-            type: Number,
-            required: true
-        },
         'title': {
             type: String,
             required: true

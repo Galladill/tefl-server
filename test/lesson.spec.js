@@ -27,7 +27,6 @@ describe('lesson api', function() {
                     res.should.have.status(201);
                     res.should.be.json;
                     res.body.should.be.a('object');
-                    res.body.should.have.property('duration');
                     res.body.should.have.property('title');
                     res.body.should.have.property('_user');
                     res.body.should.have.property('_id');
@@ -95,7 +94,7 @@ describe('lesson api', function() {
         it('should update a lesson with valid data and id', function(done) {
             chai.request(server)
                 .put('/lesson/' + lessonId)
-                .send({ duration: 30, title: '123'})
+                .send({ title: '123'})
                 .end(function(err, res){
                     res.should.have.status(200);
                     res.should.be.json;
@@ -107,7 +106,7 @@ describe('lesson api', function() {
         it('should NOT update a lesson with invalid data', function(done) {
             chai.request(server)
                 .put('/lesson/' + lessonId)
-                .send({duration: null})
+                .send({title: null})
                 .end(function(err, res){
                     res.should.have.status(400);
                     res.should.be.json;
