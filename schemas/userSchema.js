@@ -5,19 +5,19 @@
     var userSchema = new Schema({
         'email': {
             type: String,
-            required: [true, 'Required']
+            required: true
         },
         'password': {
             type: String,
-            required: [true, 'Required']
+            required: true
         },
         'firstName': {
             type: String,
-            required: [true, 'Required']
+            required: true
         },
         'lastName': {
             type: String,
-            required: [true, 'Required']
+            required: true
         },
         'accessToken': String,
         'refreshToken': String,

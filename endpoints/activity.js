@@ -22,7 +22,7 @@ function createActivity(req, res, next) {
 
 // get all activitys
 function getActivities(req, res, next) {
-    Activity.find({}, function (err, activities) {
+    Activity.find({_user: req.headers.user_id}, function (err, activities) {
          if (err) {
              return res.status(500).send(err);
          } else {

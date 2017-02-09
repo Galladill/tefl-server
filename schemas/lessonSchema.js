@@ -6,7 +6,7 @@
         '_user': {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
-            required: [true, 'Required']
+            required: true
         },
         '_activity': [{
             type: mongoose.Schema.Types.ObjectId,
@@ -14,12 +14,18 @@
         }],
         'duration': {
             type: Number,
-            required: [true, 'Required']
+            required: true
         },
         'title': {
             type: String,
-            required: [true, 'Required']
-        }
+            required: true
+        },
+        'studentGoals': [{
+            type: String
+        }],
+        'teacherGoals': [{
+            type: String
+        }]
     });
 
     module.exports = mongoose.model('lesson', lessonSchema);
