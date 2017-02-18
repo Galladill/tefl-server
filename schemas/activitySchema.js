@@ -6,20 +6,26 @@
         '_user': {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'user',
-            required: [true, 'Required']
+            required: true
         },
         'duration': {
             type: Number,
-            required: [true, 'Required']
+            required: true
         },
         'title': {
             type: String,
-            required: [true, 'Required']
+            required: true
         },
         'description': {
             type: String,
-            required: [true, 'Required']
-        }
+        },
+        'level': {
+            type: String,
+            required: true
+        },
+        'tags': [{
+            type: String
+        }]
     });
 
     module.exports = mongoose.model('activity', activitySchema);

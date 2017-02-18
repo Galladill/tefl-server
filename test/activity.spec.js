@@ -18,7 +18,7 @@ describe('activity api', function() {
 
     describe('/activity POST endpoint', function() {
         it('should add an activity with valid data', function(done) {
-            var validActivity = { duration: 20, title: 'xyz', description: 'abc'};
+            var validActivity = { duration: 20, title: 'xyz', description: 'abc', level: 'any'};
             chai.request(server)
                 .post('/activity')
                 .set('user_id', userId)
