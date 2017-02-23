@@ -13,7 +13,6 @@ function createLesson(req, res, next) {
     req.body._user = req.headers.user_id;
     Lesson.create(req.body, function (err, lesson) {
         if (err) {
-            // console.log(err);
             return res.status(400).send(err);
         }
         return res.status(201).send(lesson);

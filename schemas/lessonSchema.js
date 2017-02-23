@@ -14,7 +14,6 @@
         }],
         'duration': {
             type: Number,
-            required: true
         },
         'title': {
             type: String,
