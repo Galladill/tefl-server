@@ -21,7 +21,8 @@
   },
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha",
-    "start": "cross-env NODE_ENV=development node server.js"
+    "pre-start": "forever stopall",
+    "start": "cross-env NODE_ENV=development forever start -l forever.log -o out.log -e err.log -a server.js"
   },
   "repository": {
     "type": "git",
