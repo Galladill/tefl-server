@@ -46,7 +46,7 @@ function login(req, res, next) {
 }
 
 function logout(req, res, next) {
-    User.findOne({_id: req.body._id}, function(err, user) {
+    User.findOne({_id: req.headers.user_id}, function(err, user) {
         if (err) {
             return res.status(400).send(err);
         } else if (user == null) {
