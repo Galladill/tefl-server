@@ -25,7 +25,6 @@ function createLesson(req, res, next) {
 
 // get all lessons
 function getLessons(req, res, next) {
-    console.log(req.headers);
     if (!req.headers.isAuthorized) {
         return res.status(401).send();
     } else {

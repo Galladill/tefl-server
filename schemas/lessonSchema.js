@@ -14,6 +14,11 @@
         }],
         'duration': {
             type: Number,
+            required: true
+        },
+        'level': {
+            type: String,
+            required: true
         },
         'title': {
             type: String,

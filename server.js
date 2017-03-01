@@ -40,9 +40,7 @@ app.use(function (req, res, next) {
     var userId = req.headers.user_id;
     var accessToken = req.headers.authorization;
     var now = Date.now();
-    console.log(req.originalUrl);
     if (!userId) {
-        console.log('NOUSERID');
         isAuthorized = false;
         next();
     } else {
