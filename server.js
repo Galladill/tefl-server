@@ -4,8 +4,9 @@ var express = require('express');
 var mongoose = require('mongoose');
 var cors = require('cors');
 var bodyParser = require('body-parser');
+var User = require('./schemas/userSchema');
 var app = express();
-var Log = require('./schemas/logSchema');
+// var Log = require('./schemas/logSchema');
 
 var port = 9001;
 
@@ -32,6 +33,31 @@ app.use(bodyParser.json({ type: 'application/json' }));
 //     });
 //     next();
 // });
+
+// Check authorization
+app.use(function (req, res, next) {
+    var isAuthorized = true;
+    var userId = req.headers.user_id;
+    var accessToken = req.headers.authorization;
+    var now = Date.now();
+    console.log(req.originalUrl);
+    if (!userId) {
+        console.log('NOUSERID');
+        isAuthorized = false;
+        next();
+    } else {
+        User.findOne({_id: userId}, function (err, user) {
+            if (err) {
+                isAuthorized = false;
+            } else if (user == null || 'Bearer ' + user.accessToken !== accessToken || user.accessTokenExpires < now) {
+                isAuthorized = false;
+            }
+            req.headers.isAuthorized = isAuthorized;
+            next();
+        });
+    }
+
+});
 
 // require endpoints
 app.use('/', require('./endpoints/auth.js'));

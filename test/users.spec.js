@@ -76,111 +76,111 @@ describe('users api', function() {
         });
     });
 
-    describe('/users GET endpoint', function() {
-        it('should list ALL users', function(done) {
-            chai.request(server)
-                .get('/users')
-                .send()
-                .end(function(err, res){
-                    res.should.have.status(200);
-                    res.should.be.json;
-                    res.body.should.be.a('array');
-                    userID = res.body[0]._id;
-                    done();
-                });
-        });
-    });
+    // describe('/users GET endpoint', function() {
+    //     it('should list ALL users', function(done) {
+    //         chai.request(server)
+    //             .get('/users')
+    //             .send()
+    //             .end(function(err, res){
+    //                 res.should.have.status(200);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('array');
+    //                 userID = res.body[0]._id;
+    //                 done();
+    //             });
+    //     });
+    // });
 
-    describe('/users/:id GET endpoint', function() {
-        it('should return a user with a valid ID', function(done) {
-            chai.request(server)
-                .get('/users/' + userID)
-                .send()
-                .end(function(err, res){
-                    res.should.have.status(200);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
+    // describe('/users/:id GET endpoint', function() {
+    //     it('should return a user with a valid ID', function(done) {
+    //         chai.request(server)
+    //             .get('/users/' + userID)
+    //             .send()
+    //             .end(function(err, res){
+    //                 res.should.have.status(200);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
 
-        it('should NOT return a user with an invalid ID', function(done) {
-            chai.request(server)
-                .get('/users/thisisabadid')
-                .send()
-                .end(function(err, res){
-                    res.should.have.status(404);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
-    });
+    //     it('should NOT return a user with an invalid ID', function(done) {
+    //         chai.request(server)
+    //             .get('/users/thisisabadid')
+    //             .send()
+    //             .end(function(err, res){
+    //                 res.should.have.status(404);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
+    // });
 
-    describe('/users/:id PUT endpoint', function() {
-        it('should update a user with valid data and id', function(done) {
-            chai.request(server)
-                .put('/users/' + userID)
-                .send({firstName: 'validName', lastName: 'validLastName', email: validEmail, password: 'validPassword'})
-                .end(function(err, res){
-                    res.should.have.status(200);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
+    // describe('/users/:id PUT endpoint', function() {
+    //     it('should update a user with valid data and id', function(done) {
+    //         chai.request(server)
+    //             .put('/users/' + userID)
+    //             .send({firstName: 'validName', lastName: 'validLastName', email: validEmail, password: 'validPassword'})
+    //             .end(function(err, res){
+    //                 res.should.have.status(200);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
 
-        it('should NOT update a user with invalid data', function(done) {
-            chai.request(server)
-                .put('/users/' + userID)
-                .send({password: null})
-                .end(function(err, res){
-                    res.should.have.status(400);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
+    //     it('should NOT update a user with invalid data', function(done) {
+    //         chai.request(server)
+    //             .put('/users/' + userID)
+    //             .send({password: null})
+    //             .end(function(err, res){
+    //                 res.should.have.status(400);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
 
 
-        it('should NOT update a user with an invalid id', function(done) {
-            chai.request(server)
-                .put('/users/123invalidid')
-                .send()
-                .end(function(err, res){
-                    res.should.have.status(404);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
+    //     it('should NOT update a user with an invalid id', function(done) {
+    //         chai.request(server)
+    //             .put('/users/123invalidid')
+    //             .send()
+    //             .end(function(err, res){
+    //                 res.should.have.status(404);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
 
-    });
+    // });
 
-    describe('/users/:id DELETE endpoint', function () {
-        it('should delete a user with a valid ID', function(done){
-            chai.request(server)
-                .delete('/users/' + userID)
-                .send()
-                .end(function(err, res){
-                    res.should.have.status(200);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
+    // describe('/users/:id DELETE endpoint', function () {
+    //     it('should delete a user with a valid ID', function(done){
+    //         chai.request(server)
+    //             .delete('/users/' + userID)
+    //             .send()
+    //             .end(function(err, res){
+    //                 res.should.have.status(200);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
 
-        it('should NOT delete a user with an invalid ID', function(done){
-            chai.request(server)
-                .delete('/users/invalidid123')
-                .send()
-                .end(function(err, res){
-                    res.should.have.status(404);
-                    res.should.be.json;
-                    res.body.should.be.a('object');
-                    done();
-                });
-        });
-    });
+    //     it('should NOT delete a user with an invalid ID', function(done){
+    //         chai.request(server)
+    //             .delete('/users/invalidid123')
+    //             .send()
+    //             .end(function(err, res){
+    //                 res.should.have.status(404);
+    //                 res.should.be.json;
+    //                 res.body.should.be.a('object');
+    //                 done();
+    //             });
+    //     });
+    // });
 });
 
